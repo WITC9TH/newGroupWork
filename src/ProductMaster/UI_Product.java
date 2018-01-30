@@ -25,6 +25,7 @@ import static Constants.UI_PRODUCT.*;
 import static Constants.NUMBER.FONT_SIZE;
 import Constants.TableConstants.CATEGORY_MASTER;
 import Database.Reader.Reader;
+import static Database.Reader.Reader.read;
 import Database.Reader.SqlHolder;
 import Database.Reader.Select.Select;
 import Menu.UI_Menu;
@@ -44,6 +45,7 @@ public class UI_Product extends JPanel {
     private JTextField buyPriceText;
     private JTextField sellPriceText;
     private JComboBox categoryIDCmb;
+    List<String> id;
 
     public UI_Product() {
         setLayout(null);
@@ -164,8 +166,7 @@ public class UI_Product extends JPanel {
         productPanel.add(sellPriceText);
 
         categoryIDCmb = new JComboBox();
-        SqlHolder sh1 = new Select(CATEGORY_MASTER.C_ID.getColumn(), CATEGORY_MASTER.getTableName());
-        List<String> id = Reader.read(String.class, sh1);
+        id = getCategoryIDs();
         String[] array = new String[id.size()];
 
         categoryIDCmb.setModel(new DefaultComboBoxModel(id.toArray(array)));
@@ -176,6 +177,8 @@ public class UI_Product extends JPanel {
         initializeBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 productIDText.setText(null);
+                id = getCategoryIDs();
+                categoryIDCmb.setModel(new DefaultComboBoxModel(id.toArray(array)));
                 categoryIDCmb.setSelectedIndex(0);
                 productNameText.setText(null);
                 buyPriceText.setText(null);
@@ -206,6 +209,15 @@ public class UI_Product extends JPanel {
             return false;
         }
         return true;
+    }
+    
+    /**
+     *
+     * @return
+     */
+    public List getCategoryIDs(){
+        SqlHolder sh1 = new Select(CATEGORY_MASTER.C_ID.getColumn(), CATEGORY_MASTER.getTableName());
+        return Reader.read(String.class, sh1);
     }
 
     public JPanel getProductPanel() {
