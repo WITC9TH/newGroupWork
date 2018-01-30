@@ -25,14 +25,13 @@ import static Constants.UI_PRODUCT.*;
 import static Constants.NUMBER.FONT_SIZE;
 import Constants.TableConstants.CATEGORY_MASTER;
 import Database.Reader.Reader;
-import static Database.Reader.Reader.read;
 import Database.Reader.SqlHolder;
 import Database.Reader.Select.Select;
 import Menu.UI_Menu;
 
-
 /**
  * [処理概要]商品マスタ登録のユーザーインターフェースを生成します。
+ *
  * @author 株式会社ワールドインテック SI事業部 福岡営業所 鶴田雄基
  * @since 2018年01月18日
  * @version 1.0
@@ -68,7 +67,7 @@ public class UI_Product extends JPanel {
                         buyPriceText.getText(),
                         sellPriceText.getText(),
                         inputList);
-                
+
                 BL_Product vrbBl = new BL_Product(vrbDto);
             }
         });
@@ -183,6 +182,10 @@ public class UI_Product extends JPanel {
                 productNameText.setText(null);
                 buyPriceText.setText(null);
                 sellPriceText.setText(null);
+                productIDText.setBorder(new JTextField().getBorder());
+                productNameText.setBorder(new JTextField().getBorder());
+                buyPriceText.setBorder(new JTextField().getBorder());
+                sellPriceText.setBorder(new JTextField().getBorder());
             }
         });
         initializeBtn.setBounds(397, 370, 91, 21);
@@ -210,12 +213,12 @@ public class UI_Product extends JPanel {
         }
         return true;
     }
-    
+
     /**
      *
      * @return
      */
-    public List getCategoryIDs(){
+    public List getCategoryIDs() {
         SqlHolder sh1 = new Select(CATEGORY_MASTER.C_ID.getColumn(), CATEGORY_MASTER.getTableName());
         return Reader.read(String.class, sh1);
     }
