@@ -205,7 +205,7 @@ public class UI_Product extends JPanel {
 
     public boolean isInteger(String str) {
         try {
-            if (Integer.parseInt(buyPriceText.getText()) < 1) {
+            if (Integer.parseInt(str) < 1) {
                 return false;
             }
         } catch (NumberFormatException e) {
