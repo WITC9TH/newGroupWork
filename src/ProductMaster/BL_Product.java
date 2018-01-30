@@ -42,7 +42,7 @@ public class BL_Product extends BusinessLogic {
 
     @Override 
     protected boolean callIsValidInput() {
-        return isValidInput(REGEX_PRODUCT_ID.getRegex(), INDEX_PRODUCT_PRIMARY_KEY.getNumber(), P_ID.getColumn(), getTableName());
+        return isValidInput(REGEX_PRODUCT_ID.getRegex(), INDEX_PRIMARY_KEY.getNumber(), P_ID.getColumn(), getTableName());
     }
 
     @Override
