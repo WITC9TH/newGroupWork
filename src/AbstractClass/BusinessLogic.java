@@ -81,7 +81,7 @@ public abstract class BusinessLogic {
             }
 
             if (i == index) {
-                boolean isIndexInput = isValidIndexValue(regex, idList, jTextField);
+                boolean isIndexInput = isValidIndexValue(regex, idList, jTextField); 
                 if(isValidInput){
                     isValidInput = isIndexInput;
                 }
